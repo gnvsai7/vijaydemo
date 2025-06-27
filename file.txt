@@ -5,3 +5,11 @@ Learning Kubernetes
 Learning Terraform
 Learning AWS
 Learning Azure
+
+
+
+
+
+
+Started Git 
+Next is Linux

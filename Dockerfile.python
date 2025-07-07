@@ -1,0 +1,24 @@
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim-buster
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY app.py /app
+
+# Install any needed packages specified in requirements.txt
+# Create a requirements.txt if you have other dependencies (Flask is already there)
+# If you don't have other dependencies, you can skip this part or
+# explicitly install Flask here.
+# RUN pip install --no-cache-dir Flask
+
+# Since Flask is the only dependency for this simple example, we can directly install it.
+RUN pip install Flask gunicorn
+
+# Expose port 5000 from the container
+EXPOSE 5000
+
+# Run the application using Gunicorn (a production-ready WSGI server)
+# Gunicorn is better for production than Flask's built-in server.
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]

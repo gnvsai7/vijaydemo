@@ -1,0 +1,5 @@
+FROM ubuntu:jammy
+WORKDIR /app
+ENV APP_COLOR="blue"
+ARG APP_NAME
+RUN apt install ${APP_NAME}

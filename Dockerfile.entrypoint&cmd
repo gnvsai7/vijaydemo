@@ -1,0 +1,8 @@
+# FROM alpine:latest
+
+# CMD ["echo", "Hello from CMD"]
+
+
+FROM alpine:latest
+
+ENTRYPOINT ["echo", "Arguments Passed: "]

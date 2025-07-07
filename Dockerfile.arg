@@ -1,0 +1,8 @@
+FROM ubuntu:jammy
+# ARG TIME_ZONE="INDIA"
+ARG US_TIME_ZONE
+# ENV NAME=${TIME_ZONE}
+ENV US_NAME=${US_TIME_ZONE}
+
+# CMD [ "sh", "-c", "echo Name of the TimeZONE: $NAME",] 
+CMD [ "sh", "-c", "echo Name of the US TimeZONE: $US_NAME"]

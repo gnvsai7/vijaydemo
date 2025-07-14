@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  # python:
+  #   image: python:latest
+  #   container_name: python-app
+  #   restart: always
+  #   ports:
+  #     - 5000:5000
+
+  frontend:
+    image: bc-26:fronted
+    container_name: frontend
+    restart: always
+    ports:
+      - 80:80
+
+  backend:
+    image: bc-26:backend
+    container_name: backend
+    restart: always
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/book_discovery
+      - SPRING_DATASOURCE_USERNAME=db
+      - SPRING_DATASOURCE_PASSWORD=vijay
+      - SPRING_DATASOURCE_ROOT_PASSWORD=vijay
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - 8090:8090
+  
+  db:
+    image: mysql
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_PASSWORD: vijay
+      MYSQL_USER: db
+      MYSQL_ROOT_PASSWORD: vijay 
+    ports:
+      - 3306:3306

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    role: backend
+    app: bc_26
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      role: backend
+      app: bc_26
+  template:
+    metadata:
+      labels:
+        role: backend
+        app: bc_26
+    spec:
+      containers:
+        - name: backend
+          image: gnvsai2020/backend-image
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/book_discovery
+            - name: SPRING_DATASOURCE_USERNAME
+              value: springstudent
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: springstudent
+            - name: SPRING_DATASOURCE_ROOT_PASSWORD
+              value: springstudent
+          ports:
+            - containerPort: 8090

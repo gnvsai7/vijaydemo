@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: bc-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bc-frontend
+  template:
+    metadata:
+      labels:
+        app: bc-frontend
+    spec:
+      containers:
+        - name: bc-frontend
+          image: gnvsai2020/bootcamp
+          env:
+            - name: baseURL
+              value: http://af367bfef87c646e09a1fd1946cdb4ff-1377570211.us-east-2.elb.amazonaws.com:8090/
+          ports:
+            - containerPort: 80

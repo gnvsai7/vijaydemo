@@ -1,0 +1,36 @@
+version: '3.1'
+
+services:
+
+  frontend:
+    image: bc26:frontend
+    container_name: frontend
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      backend:
+        condition: service_started
+
+  backend:
+    image: bc26:bc26
+    container_name: backend
+    restart: always
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/book_discovery
+      - SPRING_DATASOURCE_USERNAME=springstudent
+      - SPRING_DATASOURCE_PASSWORD=springstudent
+      - SPRING_DATASOURCE_ROOT_PASSWORD=springstudent
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - 8090:8090
+    depends_on:
+     db:
+        condition: service_healthy
+
+  db:
+    image: mysql
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_PASSWORD: springstudent

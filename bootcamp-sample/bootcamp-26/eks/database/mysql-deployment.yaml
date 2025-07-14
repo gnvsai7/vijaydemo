@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    name: mysql
+    app: bc_26
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: mysql
+      app: bc_26
+  template:
+    metadata:
+      labels:
+        name: mysql
+        app: bc_26
+    spec:
+      containers:
+        - name: mysql
+          image: mysql
+          env:
+            - name: MYSQL_DATABASE
+              value: book_discovery
+            - name: MYSQL_ROOT_PASSWORD
+              value: springstudent
+            - name: MYSQL_USER
+              value: springstudent
+            - name: MYSQL_PASSWORD
+              value: springstudent
+
+          ports:
+            - containerPort: 3306
